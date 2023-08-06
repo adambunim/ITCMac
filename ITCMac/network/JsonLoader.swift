@@ -21,18 +21,25 @@ func loadDummyJson() -> [FeedItem] {
     ]
 }
 
-func loadFromApi(_ callback: @escaping ([FeedItem]) -> Void) {
+func loadFromApi(_ callback: @escaping (GetItemsResult) -> Void) {
     guard let url = URL(string: "http://localhost:3000") else {
-        callback([])
+        callback(GetItemsResult(errorMessage: "bad url", items: []))
         return
     }
 
     let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
         guard let data = data else {
-            callback([])
+            callback(GetItemsResult(errorMessage: "no data", items: []))
             return
         }
-        print(String(data: data, encoding: .utf8)!)
+        do {
+            let items = try JSONDecoder().decode([FeedItem].self, from: data)
+            callback(GetItemsResult(errorMessage: nil, items: items))
+        }
+        catch {
+            callback(GetItemsResult(errorMessage: "could not parse", items: []))
+            return
+        }
     }
     task.resume()
 }

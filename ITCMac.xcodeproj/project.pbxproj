@@ -19,6 +19,7 @@
 		73FFA5AF2A7FE79F00B964C3 /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 73FFA5AE2A7FE79F00B964C3 /* items.json */; };
 		73FFA5B12A7FE82900B964C3 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5B02A7FE82900B964C3 /* JsonLoader.swift */; };
 		73FFA5B32A7FE88F00B964C3 /* ItemsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5B22A7FE88F00B964C3 /* ItemsList.swift */; };
+		73FFA5B52A7FF43200B964C3 /* GetItemsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5B42A7FF43200B964C3 /* GetItemsResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		73FFA5AE2A7FE79F00B964C3 /* items.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = items.json; sourceTree = "<group>"; };
 		73FFA5B02A7FE82900B964C3 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		73FFA5B22A7FE88F00B964C3 /* ItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsList.swift; sourceTree = "<group>"; };
+		73FFA5B42A7FF43200B964C3 /* GetItemsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetItemsResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +113,8 @@
 				73FFA5872A7FE3DE00B964C3 /* ITCMac.entitlements */,
 				73FFA5842A7FE3DE00B964C3 /* Preview Content */,
 				73FFA5AC2A7FE52300B964C3 /* FeedItem.swift */,
+				73FFA5B62A7FF43D00B964C3 /* network */,
 				73FFA5AE2A7FE79F00B964C3 /* items.json */,
-				73FFA5B02A7FE82900B964C3 /* JsonLoader.swift */,
 			);
 			path = ITCMac;
 			sourceTree = "<group>";
@@ -150,6 +152,15 @@
 				73FFA5AA2A7FE4DD00B964C3 /* FeedCell.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		73FFA5B62A7FF43D00B964C3 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				73FFA5B42A7FF43200B964C3 /* GetItemsResult.swift */,
+				73FFA5B02A7FE82900B964C3 /* JsonLoader.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				73FFA5B32A7FE88F00B964C3 /* ItemsList.swift in Sources */,
 				73FFA5AD2A7FE52300B964C3 /* FeedItem.swift in Sources */,
 				73FFA5812A7FE3DB00B964C3 /* ContentView.swift in Sources */,
+				73FFA5B52A7FF43200B964C3 /* GetItemsResult.swift in Sources */,
 				73FFA57F2A7FE3DB00B964C3 /* ITCMacApp.swift in Sources */,
 				73FFA5AB2A7FE4DD00B964C3 /* FeedCell.swift in Sources */,
 				73FFA5B12A7FE82900B964C3 /* JsonLoader.swift in Sources */,

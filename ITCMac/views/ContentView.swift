@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var loading = false
-    @State var items: [FeedItem]? = nil
+    @State var response: GetItemsResult? = nil
     
     var body: some View {
         VStack {
@@ -24,8 +24,14 @@ struct ContentView: View {
             }
             .padding()
             
-            if let items = items {
-                ItemsList(items: items)
+            if let response = response {
+                if let errorMessage = response.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                }
+                else {
+                    ItemsList(items: response.items)
+                }
             }
             else {
                 ProgressView()
@@ -40,7 +46,7 @@ struct ContentView: View {
         loading = true
         loadFromApi { response in
             loading = false
-            items = response
+            self.response = response
         }
     }
 }
