@@ -14,6 +14,8 @@
 		73FFA5912A7FE3DE00B964C3 /* ITCMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5902A7FE3DE00B964C3 /* ITCMacTests.swift */; };
 		73FFA59B2A7FE3DE00B964C3 /* ITCMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA59A2A7FE3DE00B964C3 /* ITCMacUITests.swift */; };
 		73FFA59D2A7FE3DE00B964C3 /* ITCMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA59C2A7FE3DE00B964C3 /* ITCMacUITestsLaunchTests.swift */; };
+		73FFA5AB2A7FE4DD00B964C3 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5AA2A7FE4DD00B964C3 /* FeedCell.swift */; };
+		73FFA5AD2A7FE52300B964C3 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5AC2A7FE52300B964C3 /* FeedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		73FFA5962A7FE3DE00B964C3 /* ITCMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ITCMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73FFA59A2A7FE3DE00B964C3 /* ITCMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCMacUITests.swift; sourceTree = "<group>"; };
 		73FFA59C2A7FE3DE00B964C3 /* ITCMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		73FFA5AA2A7FE4DD00B964C3 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		73FFA5AC2A7FE52300B964C3 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				73FFA57E2A7FE3DB00B964C3 /* ITCMacApp.swift */,
-				73FFA5802A7FE3DB00B964C3 /* ContentView.swift */,
+				73FFA5A92A7FE4C600B964C3 /* views */,
 				73FFA5822A7FE3DE00B964C3 /* Assets.xcassets */,
 				73FFA5872A7FE3DE00B964C3 /* ITCMac.entitlements */,
 				73FFA5842A7FE3DE00B964C3 /* Preview Content */,
+				73FFA5AC2A7FE52300B964C3 /* FeedItem.swift */,
 			);
 			path = ITCMac;
 			sourceTree = "<group>";
@@ -127,6 +132,15 @@
 				73FFA59C2A7FE3DE00B964C3 /* ITCMacUITestsLaunchTests.swift */,
 			);
 			path = ITCMacUITests;
+			sourceTree = "<group>";
+		};
+		73FFA5A92A7FE4C600B964C3 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				73FFA5802A7FE3DB00B964C3 /* ContentView.swift */,
+				73FFA5AA2A7FE4DD00B964C3 /* FeedCell.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73FFA5AD2A7FE52300B964C3 /* FeedItem.swift in Sources */,
 				73FFA5812A7FE3DB00B964C3 /* ContentView.swift in Sources */,
 				73FFA57F2A7FE3DB00B964C3 /* ITCMacApp.swift in Sources */,
+				73FFA5AB2A7FE4DD00B964C3 /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
