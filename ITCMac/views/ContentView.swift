@@ -3,14 +3,26 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let items: [FeedItem] = [
-        FeedItem(id: "1", title: "milk"),
-        FeedItem(id: "2", title: "cookies")
-    ]
+    @State var items: [FeedItem]? = nil
     
     var body: some View {
-        List(items) {
-            FeedCell(item: $0)
+        if let items = items {
+            ItemsList(items: items)
+        }
+        else {
+            ProgressView()
+                .onAppear {
+                    load()
+                }
+        }
+    }
+    
+    func load() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            items = [
+                FeedItem(id: "1", title: "milk", body: "milk"),
+                         FeedItem(id: "2", title: "cookies", body: "cookies")
+            ]
         }
     }
 }
