@@ -1,15 +1,15 @@
 
 import Foundation
 
-func loadJson() {
-    if let filepath = Bundle.main.path(forResource: "example", ofType: "txt") {
-        do {
-            let contents = try String(contentsOfFile: filepath)
-            print(contents)
-        } catch {
-            // contents could not be loaded
-        }
-    } else {
-        // example.txt not found!
+func loadJson() -> [FeedItem] {
+    guard let filepath = Bundle.main.path(forResource: "items", ofType: "json") else {
+        return []
+    }
+    do {
+        let json = try String(contentsOfFile: filepath)
+        let data = Data(json.utf8)
+        return try JSONDecoder().decode([FeedItem].self, from: data)
+    } catch {
+        return []
     }
 }

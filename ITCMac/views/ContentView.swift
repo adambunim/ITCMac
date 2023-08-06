@@ -18,11 +18,11 @@ struct ContentView: View {
     }
     
     func load() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            items = [
-                FeedItem(id: "1", title: "milk", body: "milk"),
-                         FeedItem(id: "2", title: "cookies", body: "cookies")
-            ]
-        }
+            items = loadJson()
+        
+//            items = [
+//                FeedItem(id: "1", title: "milk", body: "milk"),
+//                         FeedItem(id: "2", title: "cookies", body: "cookies")
+//            ]
     }
 }
