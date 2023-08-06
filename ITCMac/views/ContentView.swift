@@ -24,21 +24,28 @@ struct ContentView: View {
             }
             .padding()
             
-            if let response = response {
-                if let errorMessage = response.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
+            ZStack {
+                if let response = response {
+                    if let errorMessage = response.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    }
+                    else {
+                        ItemsList(items: response.items)
+                    }
                 }
                 else {
-                    ItemsList(items: response.items)
+                    Spacer()
+                }
+                
+                if loading {
+                    ProgressView()
                 }
             }
-            else {
-                ProgressView()
-                    .onAppear {
-                        load()
-                    }
-            }
+    
+        }
+        .onAppear {
+            load()
         }
     }
     
