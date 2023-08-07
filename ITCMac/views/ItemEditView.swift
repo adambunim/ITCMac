@@ -5,7 +5,7 @@ struct ItemEditView: View {
     
     let item: FeedItem
     @EnvironmentObject var apiState: ApiState
-    @Binding var showingEditSheet: Bool
+    @Binding var showingSheet: Bool
     @State var title = ""
     @State var details = ""
     @State var error = false
@@ -21,7 +21,7 @@ struct ItemEditView: View {
                 Spacer()
                 
                 Button(action: {
-                    showingEditSheet = false
+                    showingSheet = false
                 }) {
                     Text("x")
                 }
@@ -54,7 +54,7 @@ struct ItemEditView: View {
                         $0.id != item.id
                     }
                     apiState.items.append(item)
-                    showingEditSheet = false
+                    showingSheet = false
                 }
                 else {
                     error = true

@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(.plain)
                 .sheet(isPresented: $showingAddSheet) {
-                    ItemAddView(showingAddSheet: $showingAddSheet)
+                    ItemAddView(showingSheet: $showingAddSheet)
                 }
                 
                 Spacer()

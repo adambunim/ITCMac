@@ -32,7 +32,7 @@ struct ItemView: View {
                 }) {
                     Image(systemName: "pencil")
                         .sheet(isPresented: $showingEditSheet) {
-                            ItemEditView(item: item, showingEditSheet: $showingEditSheet)
+                            ItemEditView(item: item, showingSheet: $showingEditSheet)
                         }
                 }
                 
