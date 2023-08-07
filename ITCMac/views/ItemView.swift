@@ -22,7 +22,14 @@ struct ItemView: View {
     }
     
     func delete() {
-        print("delet")
+        Api.delete(item.id) { response in
+            if response.success {
+                print("success")
+            }
+            else {
+                print(response.errorMessage ?? "faild")
+            }
+        }
     }
     
 }
