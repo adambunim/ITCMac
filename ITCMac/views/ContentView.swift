@@ -4,24 +4,18 @@ import SwiftUI
 struct ContentView: View {
     
     @State var loading = false
-    @State var response: GetItemsResult? = nil
+    @State var errorMessage: String? = nil
     @StateObject var items = ObservableItems()
     
     var body: some View {
         NavigationView {
             VStack {
                 ZStack {
-                    if let response = response {
-                        if let errorMessage = response.errorMessage {
-                            Text(errorMessage)
-                                .foregroundColor(.red)
-                        }
-                        else {
-                            ItemsList()
-                        }
-                    }
-                    else {
-                        Spacer()
+                    ItemsList()
+                    
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
                     }
                     
                     if loading {
@@ -55,9 +49,11 @@ struct ContentView: View {
     func load() {
         loading = true
         Api.get { response in
-            loading = false
-            self.response = response
-            items.list = response.items
+            DispatchQueue.main.async {
+                loading = false
+                self.errorMessage = response.errorMessage
+                items.list = response.items
+            }
         }
     }
 }
