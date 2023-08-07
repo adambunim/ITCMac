@@ -50,10 +50,10 @@ struct ItemEditView: View {
         Api.edit(item.id, item) { success in
             DispatchQueue.main.async {
                 if success {
-//                    apiState.items = apiState.items.filter {
-//                        $0.id != item.id
-//                    }
-                    //TODO
+                    apiState.items = apiState.items.filter {
+                        $0.id != item.id
+                    }
+                    apiState.items.append(item)
                     showingEditSheet = false
                 }
                 else {

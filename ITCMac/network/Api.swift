@@ -69,6 +69,8 @@ class Api {
         do {
             let data = try jsonEncoder.encode(item)
             request.httpBody = data
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
                 if error != nil {
                     print("got error")
