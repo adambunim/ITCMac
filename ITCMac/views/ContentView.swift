@@ -6,6 +6,7 @@ struct ContentView: View {
     @StateObject var apiState = ApiState()
     @State var showingAlert = false
     @State var errorMessage: String = ""
+    @State var showingAddSheet = false
     
     var body: some View {
         VStack {
@@ -20,6 +21,16 @@ struct ContentView: View {
             Spacer()
             
             HStack {
+                Button(action: {
+                    showingAddSheet = true
+                }) {
+                    Text("+")
+                }
+                .buttonStyle(.plain)
+                .sheet(isPresented: $showingAddSheet) {
+                    ItemAddView(showingAddSheet: $showingAddSheet)
+                }
+                
                 Spacer()
                 
                 Button(action: {
