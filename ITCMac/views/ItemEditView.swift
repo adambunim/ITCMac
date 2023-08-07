@@ -35,6 +35,7 @@ struct ItemEditView: View {
             Button(action: save) {
                 Text("Save")
             }
+            .disabled(title == item.title && details == item.details)
             
         }
         .padding()
