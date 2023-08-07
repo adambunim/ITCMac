@@ -6,32 +6,30 @@ struct ContentView: View {
     @StateObject var apiState = ApiState()
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ZStack {
-                    ItemsList()
-                    
-                    if apiState.loading {
-                        ProgressView()
-                    }
+        VStack {
+            ZStack {
+                ItemsList()
+                
+                if apiState.loading {
+                    ProgressView()
                 }
-        
+            }
+    
+            Spacer()
+            
+            HStack {
                 Spacer()
                 
-                HStack {
-                    Spacer()
-                    
-                    Button(action: {
-                        load()
-                    }) {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                    }
-                    .buttonStyle(.plain)
-                    .disabled(apiState.loading)
+                Button(action: {
+                    load()
+                }) {
+                    Image(systemName: "arrow.triangle.2.circlepath")
                 }
-                .padding()
-                
+                .buttonStyle(.plain)
+                .disabled(apiState.loading)
             }
+            .padding()
+            
         }
         .alert(apiState.errorMessage, isPresented: $apiState.showingAlert) {
             Button("OK", role: .cancel) { }
