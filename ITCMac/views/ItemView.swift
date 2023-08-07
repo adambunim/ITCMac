@@ -5,6 +5,7 @@ struct ItemView: View {
     
     let item: FeedItem
     @EnvironmentObject var apiState: ApiState
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
@@ -24,15 +25,17 @@ struct ItemView: View {
     
     func delete() {
         Api.delete(item.id) { response in
-            if response.success {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if response.success {
                     apiState.items = apiState.items.filter {
                         $0.id != item.id
                     }
+                    dismiss()
                 }
-            }
-            else {
-                print(response.errorMessage ?? "faild")
+                else {
+                    apiState.showingAlert = true
+                    apiState.errorMessage = "failed to delete"
+                }
             }
         }
     }
