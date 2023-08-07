@@ -28,34 +28,39 @@ class Api {
         task.resume()
     }
 
-    static func delete(_ id: String, _ callback: @escaping (ApiResponse) -> Void) {
+    static func delete(_ id: String, _ callback: @escaping (Bool) -> Void) {
         guard let url = URL(string: "\(host)/\(id)") else {
-            callback(ApiResponse(success: false, errorMessage: "bad url"))
+            print("bad url")
+            callback(false)
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             if error != nil {
-                callback(ApiResponse(success: false, errorMessage: "got error"))
+                print("got error")
+                callback(false)
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                callback(ApiResponse(success: false, errorMessage: "wrong response type"))
+                print("wrong response type")
+                callback(false)
                 return
             }
             if httpResponse.statusCode != 200 {
-                callback(ApiResponse(success: false, errorMessage: "error code \(httpResponse.statusCode)"))
+                print("error code \(httpResponse.statusCode)")
+                callback(false)
                 return
             }
-            callback(ApiResponse(success: true, errorMessage: nil))
+            callback(true)
         }
         task.resume()
     }
     
-    static func edit(_ id: String, _ item: FeedItem, _ callback: @escaping (ApiResponse) -> Void) {
+    static func edit(_ id: String, _ item: FeedItem, _ callback: @escaping (Bool) -> Void) {
         guard let url = URL(string: "\(host)/\(id)") else {
-            callback(ApiResponse(success: false, errorMessage: "bad url"))
+            print("bad url")
+            callback(false)
             return
         }
         var request = URLRequest(url: url)
@@ -66,23 +71,27 @@ class Api {
             request.httpBody = data
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
                 if error != nil {
-                    callback(ApiResponse(success: false, errorMessage: "got error"))
+                    print("got error")
+                    callback(false)
                     return
                 }
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    callback(ApiResponse(success: false, errorMessage: "wrong response type"))
+                    print("wrong response type")
+                    callback(false)
                     return
                 }
                 if httpResponse.statusCode != 200 {
-                    callback(ApiResponse(success: false, errorMessage: "error code \(httpResponse.statusCode)"))
+                    print("error code \(httpResponse.statusCode)")
+                    callback(false)
                     return
                 }
-                callback(ApiResponse(success: true, errorMessage: nil))
+                callback(true)
             }
             task.resume()
         }
         catch {
-            callback(ApiResponse(success: false, errorMessage: "failed to encode"))
+            print("failed to encode")
+            callback(false)
         }
     }
         

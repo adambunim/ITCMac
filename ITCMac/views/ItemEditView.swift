@@ -46,9 +46,9 @@ struct ItemEditView: View {
     
     func save() {
         let item = FeedItem(id: item.id, title: title, details: details)
-        Api.edit(item.id, item) { response in
+        Api.edit(item.id, item) { success in
             DispatchQueue.main.async {
-                if response.success {
+                if success {
 //                    apiState.items = apiState.items.filter {
 //                        $0.id != item.id
 //                    }

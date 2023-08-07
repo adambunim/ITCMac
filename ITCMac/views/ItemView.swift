@@ -52,9 +52,9 @@ struct ItemView: View {
     }
     
     func delete() {
-        Api.delete(item.id) { response in
+        Api.delete(item.id) { success in
             DispatchQueue.main.async {
-                if response.success {
+                if success {
                     apiState.items = apiState.items.filter {
                         $0.id != item.id
                     }
