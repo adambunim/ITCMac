@@ -52,7 +52,7 @@ struct ContentView: View {
     
     func load() {
         loading = true
-        loadFromApi { response in
+        Api.loadFromApi { response in
             loading = false
             self.response = response
         }
