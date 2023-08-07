@@ -16,7 +16,7 @@ struct ItemCell: View {
             }
             .padding([.leading, .trailing])
             .sheet(isPresented: $showingSheet) {
-                ItemView(item: item)
+                ItemView(item: item, showingSheet: $showingSheet)
             }
         }
     }

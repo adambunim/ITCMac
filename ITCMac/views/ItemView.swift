@@ -5,19 +5,28 @@ struct ItemView: View {
     
     let item: FeedItem
     @EnvironmentObject var apiState: ApiState
-    @Environment(\.dismiss) private var dismiss
+    @Binding var showingSheet: Bool
     
     var body: some View {
         VStack {
-            Text(item.title)
-            Text(item.body)
-            Spacer()
             HStack {
                 Spacer()
                 
-                Button(action: delete) {
-                    Image(systemName: "trash")
+                Button(action: {
+                    showingSheet = false
+                }) {
+                    Text("x")
                 }
+            }
+            
+            Text(item.title)
+                .font(.title)
+            Text(item.body)
+                .font(.body)
+            Spacer()
+            Button(action: delete) {
+                Text("Delete")
+                    .foregroundColor(.red)
             }
         }
         .padding()
@@ -30,7 +39,7 @@ struct ItemView: View {
                     apiState.items = apiState.items.filter {
                         $0.id != item.id
                     }
-                    dismiss()
+                    showingSheet = false
                 }
                 else {
                     apiState.showingAlert = true
