@@ -11,11 +11,6 @@ struct ContentView: View {
                 ZStack {
                     ItemsList()
                     
-                    if let errorMessage = apiState.errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
-                    }
-                    
                     if apiState.loading {
                         ProgressView()
                     }
@@ -38,7 +33,7 @@ struct ContentView: View {
                 
             }
         }
-        .alert("Important message", isPresented: $apiState.showingAlert) {
+        .alert(apiState.errorMessage, isPresented: $apiState.showingAlert) {
             Button("OK", role: .cancel) { }
         }
         .environmentObject(apiState)
@@ -53,7 +48,14 @@ struct ContentView: View {
         Api.get { response in
             DispatchQueue.main.async {
                 apiState.loading = false
-                apiState.errorMessage = response.errorMessage
+                if let error = response.errorMessage {
+                    apiState.showingAlert = true
+                    apiState.errorMessage = error
+                }
+                else {
+                    apiState.showingAlert = false
+                    apiState.errorMessage = ""
+                }
                 apiState.items = response.items
             }
         }
