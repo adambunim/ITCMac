@@ -41,7 +41,6 @@ struct ItemAddView: View {
     }
     
     func save() {
-        //TODO ID
         var item = FeedItem(id: "", title: title, details: details)
         Api.add(item) { id in
             DispatchQueue.main.async {
