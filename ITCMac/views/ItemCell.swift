@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct FeedCell: View {
+struct ItemCell: View {
     
     let item: FeedItem
     

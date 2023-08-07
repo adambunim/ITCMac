@@ -7,7 +7,7 @@ struct ItemsList: View {
     
     var body: some View {
         List(items) {
-            FeedCell(item: $0)
+            ItemCell(item: $0)
         }
     }
 }
