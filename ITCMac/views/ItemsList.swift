@@ -3,10 +3,10 @@ import SwiftUI
 
 struct ItemsList: View {
     
-    let items: [FeedItem]
+    @EnvironmentObject var items: ObservableItems
     
     var body: some View {
-        List(items) {
+        List(items.list) {
             ItemCell(item: $0)
         }
     }

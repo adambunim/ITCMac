@@ -5,6 +5,7 @@ struct ContentView: View {
     
     @State var loading = false
     @State var response: GetItemsResult? = nil
+    @StateObject var items = ObservableItems()
     
     var body: some View {
         NavigationView {
@@ -16,7 +17,7 @@ struct ContentView: View {
                                 .foregroundColor(.red)
                         }
                         else {
-                            ItemsList(items: response.items)
+                            ItemsList()
                         }
                     }
                     else {
@@ -45,6 +46,7 @@ struct ContentView: View {
                 
             }
         }
+        .environmentObject(items)
         .onAppear {
             load()
         }
@@ -55,6 +57,7 @@ struct ContentView: View {
         Api.get { response in
             loading = false
             self.response = response
+            items.list = response.items
         }
     }
 }
