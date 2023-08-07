@@ -42,10 +42,11 @@ struct ItemAddView: View {
     
     func save() {
         //TODO ID
-        let item = FeedItem(id: "0", title: title, details: details)
-        Api.add(item) { success in
+        var item = FeedItem(id: "", title: title, details: details)
+        Api.add(item) { id in
             DispatchQueue.main.async {
-                if success {
+                if let id = id  {
+                    item.id = id
                     apiState.items.append(item)
                     showingSheet = false
                 }

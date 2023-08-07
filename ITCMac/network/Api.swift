@@ -97,10 +97,10 @@ class Api {
         }
     }
     
-    static func add(_ item: FeedItem, _ callback: @escaping (Bool) -> Void) {
+    static func add(_ item: FeedItem, _ callback: @escaping (String?) -> Void) {
         guard let url = URL(string: host) else {
             print("bad url")
-            callback(false)
+            callback(nil)
             return
         }
         var request = URLRequest(url: url)
@@ -114,26 +114,32 @@ class Api {
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
                 if error != nil {
                     print("got error")
-                    callback(false)
+                    callback(nil)
                     return
                 }
                 guard let httpResponse = response as? HTTPURLResponse else {
                     print("wrong response type")
-                    callback(false)
+                    callback(nil)
                     return
                 }
                 if httpResponse.statusCode != 200 {
                     print("error code \(httpResponse.statusCode)")
-                    callback(false)
+                    callback(nil)
                     return
                 }
-                callback(true)
+                guard let data = data else {
+                    print("no data")
+                    callback(nil)
+                    return
+                }
+                let id = String(decoding: data, as: UTF8.self)
+                callback(id)
             }
             task.resume()
         }
         catch {
             print("failed to encode")
-            callback(false)
+            callback(nil)
         }
     }
         
