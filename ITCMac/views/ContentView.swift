@@ -9,19 +9,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Spacer()
-                    
-                    Button(action: {
-                        load()
-                    }) {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                    }
-                    .buttonStyle(.plain)
-                    .disabled(loading)
-                }
-                .padding()
-                
                 ZStack {
                     if let response = response {
                         if let errorMessage = response.errorMessage {
@@ -41,6 +28,21 @@ struct ContentView: View {
                     }
                 }
         
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        load()
+                    }) {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(loading)
+                }
+                .padding()
+                
             }
         }
         .onAppear {
