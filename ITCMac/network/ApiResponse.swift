@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct DeleteItemResponse {
+struct ApiResponse {
     let success: Bool
     let errorMessage: String?
 }

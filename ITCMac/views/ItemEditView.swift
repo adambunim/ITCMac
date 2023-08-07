@@ -23,6 +23,12 @@ struct ItemEditView: View {
             
             TextField("Title", text: $title)
             TextField("Body", text: $itemBody)
+            
+            Spacer()
+            
+            Button(action: save) {
+                Text("Save")
+            }
         }
         .padding()
         .onAppear {
@@ -30,4 +36,24 @@ struct ItemEditView: View {
             itemBody = item.body
         }
     }
+    
+    func save() {
+        let item = FeedItem(id: item.id, title: title, body: itemBody)
+        Api.edit(item.id, item) { response in
+            DispatchQueue.main.async {
+                if response.success {
+//                    apiState.items = apiState.items.filter {
+//                        $0.id != item.id
+//                    }
+                    //TODO
+                    showingEditSheet = false
+                }
+                else {
+                    apiState.showingAlert = true
+                    apiState.errorMessage = "failed to delete"
+                }
+            }
+        }
+    }
+    
 }
