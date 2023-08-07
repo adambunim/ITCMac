@@ -24,6 +24,7 @@
 		73FFA5BC2A80E49500B964C3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BB2A80E49500B964C3 /* Api.swift */; };
 		73FFA5BE2A80E6F300B964C3 /* DeleteItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BD2A80E6F300B964C3 /* DeleteItemResponse.swift */; };
 		73FFA5C02A80F6A000B964C3 /* ApiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BF2A80F6A000B964C3 /* ApiState.swift */; };
+		73FFA5C42A81191400B964C3 /* ItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5C32A81191400B964C3 /* ItemEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		73FFA5BB2A80E49500B964C3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		73FFA5BD2A80E6F300B964C3 /* DeleteItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemResponse.swift; sourceTree = "<group>"; };
 		73FFA5BF2A80F6A000B964C3 /* ApiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiState.swift; sourceTree = "<group>"; };
+		73FFA5C32A81191400B964C3 /* ItemEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				73FFA5B22A7FE88F00B964C3 /* ItemsList.swift */,
 				73FFA5AA2A7FE4DD00B964C3 /* ItemCell.swift */,
 				73FFA5B92A80E26400B964C3 /* ItemView.swift */,
+				73FFA5C32A81191400B964C3 /* ItemEditView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				73FFA5AD2A7FE52300B964C3 /* FeedItem.swift in Sources */,
 				73FFA5C02A80F6A000B964C3 /* ApiState.swift in Sources */,
 				73FFA5BE2A80E6F300B964C3 /* DeleteItemResponse.swift in Sources */,
+				73FFA5C42A81191400B964C3 /* ItemEditView.swift in Sources */,
 				73FFA5812A7FE3DB00B964C3 /* ContentView.swift in Sources */,
 				73FFA5BA2A80E26400B964C3 /* ItemView.swift in Sources */,
 				73FFA5B52A7FF43200B964C3 /* GetItemsResult.swift in Sources */,

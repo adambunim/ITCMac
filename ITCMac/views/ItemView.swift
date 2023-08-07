@@ -6,6 +6,7 @@ struct ItemView: View {
     let item: FeedItem
     @EnvironmentObject var apiState: ApiState
     @Binding var showingSheet: Bool
+    @State var showingEditSheet = false
     
     var body: some View {
         VStack {
@@ -17,6 +18,18 @@ struct ItemView: View {
                 }) {
                     Text("x")
                 }
+                
+                Spacer()
+                
+                Button(action: {
+                    showingEditSheet = true
+                }) {
+                    Image(systemName: "pencil")
+                        .sheet(isPresented: $showingEditSheet) {
+                            ItemEditView(item: item, showingEditSheet: $showingEditSheet)
+                        }
+                }
+                
             }
             
             Text(item.title)
