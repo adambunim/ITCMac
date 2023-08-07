@@ -7,10 +7,16 @@ struct ItemView: View {
     @EnvironmentObject var apiState: ApiState
     @Binding var showingSheet: Bool
     @State var showingEditSheet = false
+    @State var error = false
     
     var body: some View {
         VStack {
             HStack {
+                if error {
+                    Image(systemName: "exclamationmark")
+                        .foregroundColor(.red)
+                }
+                
                 Spacer()
                 
                 Button(action: {
@@ -55,8 +61,7 @@ struct ItemView: View {
                     showingSheet = false
                 }
                 else {
-                    apiState.showingAlert = true
-                    apiState.errorMessage = "failed to delete"
+                    error = true
                 }
             }
         }

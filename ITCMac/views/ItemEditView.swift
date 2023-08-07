@@ -8,10 +8,16 @@ struct ItemEditView: View {
     @Binding var showingEditSheet: Bool
     @State var title = ""
     @State var details = ""
+    @State var error = false
     
     var body: some View {
         VStack {
             HStack {
+                if error {
+                    Image(systemName: "exclamationmark")
+                        .foregroundColor(.red)
+                }
+                
                 Spacer()
                 
                 Button(action: {
@@ -29,6 +35,7 @@ struct ItemEditView: View {
             Button(action: save) {
                 Text("Save")
             }
+            
         }
         .padding()
         .onAppear {
@@ -49,8 +56,7 @@ struct ItemEditView: View {
                     showingEditSheet = false
                 }
                 else {
-                    apiState.showingAlert = true
-                    apiState.errorMessage = "failed to delete"
+                    error = true
                 }
             }
         }
