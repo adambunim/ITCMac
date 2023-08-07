@@ -4,7 +4,7 @@ import SwiftUI
 struct ItemView: View {
     
     let item: FeedItem
-    @EnvironmentObject var items: ObservableItems
+    @EnvironmentObject var apiState: ApiState
     
     var body: some View {
         VStack {
@@ -26,7 +26,7 @@ struct ItemView: View {
         Api.delete(item.id) { response in
             if response.success {
                 DispatchQueue.main.async {
-                    items.list = items.list.filter {
+                    apiState.items = apiState.items.filter {
                         $0.id != item.id
                     }
                 }

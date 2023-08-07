@@ -23,7 +23,7 @@
 		73FFA5BA2A80E26400B964C3 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5B92A80E26400B964C3 /* ItemView.swift */; };
 		73FFA5BC2A80E49500B964C3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BB2A80E49500B964C3 /* Api.swift */; };
 		73FFA5BE2A80E6F300B964C3 /* DeleteItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BD2A80E6F300B964C3 /* DeleteItemResponse.swift */; };
-		73FFA5C02A80F6A000B964C3 /* ObservableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BF2A80F6A000B964C3 /* ObservableItems.swift */; };
+		73FFA5C02A80F6A000B964C3 /* ApiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5BF2A80F6A000B964C3 /* ApiState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		73FFA5B92A80E26400B964C3 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		73FFA5BB2A80E49500B964C3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		73FFA5BD2A80E6F300B964C3 /* DeleteItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemResponse.swift; sourceTree = "<group>"; };
-		73FFA5BF2A80F6A000B964C3 /* ObservableItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableItems.swift; sourceTree = "<group>"; };
+		73FFA5BF2A80F6A000B964C3 /* ApiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 				73FFA5AC2A7FE52300B964C3 /* FeedItem.swift */,
 				73FFA5B62A7FF43D00B964C3 /* network */,
 				73FFA5AE2A7FE79F00B964C3 /* items.json */,
-				73FFA5BF2A80F6A000B964C3 /* ObservableItems.swift */,
+				73FFA5BF2A80F6A000B964C3 /* ApiState.swift */,
 			);
 			path = ITCMac;
 			sourceTree = "<group>";
@@ -309,7 +309,7 @@
 				73FFA5BC2A80E49500B964C3 /* Api.swift in Sources */,
 				73FFA5B32A7FE88F00B964C3 /* ItemsList.swift in Sources */,
 				73FFA5AD2A7FE52300B964C3 /* FeedItem.swift in Sources */,
-				73FFA5C02A80F6A000B964C3 /* ObservableItems.swift in Sources */,
+				73FFA5C02A80F6A000B964C3 /* ApiState.swift in Sources */,
 				73FFA5BE2A80E6F300B964C3 /* DeleteItemResponse.swift in Sources */,
 				73FFA5812A7FE3DB00B964C3 /* ContentView.swift in Sources */,
 				73FFA5BA2A80E26400B964C3 /* ItemView.swift in Sources */,

@@ -3,9 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var loading = false
-    @State var errorMessage: String? = nil
-    @StateObject var items = ObservableItems()
+    @StateObject var apiState = ApiState()
     
     var body: some View {
         NavigationView {
@@ -13,12 +11,12 @@ struct ContentView: View {
                 ZStack {
                     ItemsList()
                     
-                    if let errorMessage = errorMessage {
+                    if let errorMessage = apiState.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
                     }
                     
-                    if loading {
+                    if apiState.loading {
                         ProgressView()
                     }
                 }
@@ -34,25 +32,29 @@ struct ContentView: View {
                         Image(systemName: "arrow.triangle.2.circlepath")
                     }
                     .buttonStyle(.plain)
-                    .disabled(loading)
+                    .disabled(apiState.loading)
                 }
                 .padding()
                 
             }
         }
-        .environmentObject(items)
+        .alert("Important message", isPresented: $apiState.showingAlert) {
+            Button("OK", role: .cancel) { }
+        }
+        .environmentObject(apiState)
         .onAppear {
             load()
         }
     }
     
     func load() {
-        loading = true
+        apiState.showingAlert = false
+        apiState.loading = true
         Api.get { response in
             DispatchQueue.main.async {
-                loading = false
-                self.errorMessage = response.errorMessage
-                items.list = response.items
+                apiState.loading = false
+                apiState.errorMessage = response.errorMessage
+                apiState.items = response.items
             }
         }
     }
