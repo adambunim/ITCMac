@@ -6,7 +6,7 @@ struct ITCMacApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(width: 200, height: 400)
+                .frame(width: 400, height: 400)
         }
     }
 }

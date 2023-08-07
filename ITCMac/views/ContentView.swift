@@ -7,42 +7,41 @@ struct ContentView: View {
     @State var response: GetItemsResult? = nil
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Text("Messages")
-                    .font(.title)
-                Spacer()
-                
-                Button(action: {
-                    load()
-                }) {
-                    Image(systemName: "arrow.triangle.2.circlepath")
+        NavigationView {
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        load()
+                    }) {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(loading)
                 }
-                .buttonStyle(.plain)
-                .disabled(loading)
-            }
-            .padding()
-            
-            ZStack {
-                if let response = response {
-                    if let errorMessage = response.errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
+                .padding()
+                
+                ZStack {
+                    if let response = response {
+                        if let errorMessage = response.errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                        }
+                        else {
+                            ItemsList(items: response.items)
+                        }
                     }
                     else {
-                        ItemsList(items: response.items)
+                        Spacer()
+                    }
+                    
+                    if loading {
+                        ProgressView()
                     }
                 }
-                else {
-                    Spacer()
-                }
-                
-                if loading {
-                    ProgressView()
-                }
+        
             }
-    
         }
         .onAppear {
             load()
