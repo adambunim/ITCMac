@@ -4,6 +4,8 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var apiState = ApiState()
+    @State var showingAlert = false
+    @State var errorMessage: String = ""
     
     var body: some View {
         VStack {
@@ -31,7 +33,7 @@ struct ContentView: View {
             .padding()
             
         }
-        .alert(apiState.errorMessage, isPresented: $apiState.showingAlert) {
+        .alert(errorMessage, isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         }
         .environmentObject(apiState)
@@ -41,18 +43,18 @@ struct ContentView: View {
     }
     
     func load() {
-        apiState.showingAlert = false
+        showingAlert = false
         apiState.loading = true
         Api.get { response in
             DispatchQueue.main.async {
                 apiState.loading = false
                 if let error = response.errorMessage {
-                    apiState.showingAlert = true
-                    apiState.errorMessage = error
+                    showingAlert = true
+                    errorMessage = error
                 }
                 else {
-                    apiState.showingAlert = false
-                    apiState.errorMessage = ""
+                    showingAlert = false
+                    errorMessage = ""
                 }
                 apiState.items = response.items
             }
