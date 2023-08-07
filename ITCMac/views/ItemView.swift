@@ -34,7 +34,7 @@ struct ItemView: View {
             
             Text(item.title)
                 .font(.title)
-            Text(item.body)
+            Text(item.details)
                 .font(.body)
             Spacer()
             Button(action: delete) {

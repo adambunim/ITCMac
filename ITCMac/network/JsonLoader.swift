@@ -16,7 +16,7 @@ func loadJsonFromFile() -> [FeedItem] {
 
 func loadDummyJson() -> [FeedItem] {
     return [
-        FeedItem(id: "1", title: "milk", body: "milk"),
-                 FeedItem(id: "2", title: "cookies", body: "cookies")
+        FeedItem(id: "1", title: "milk", details: "milk"),
+                 FeedItem(id: "2", title: "cookies", details: "cookies")
     ]
 }

@@ -7,7 +7,7 @@ struct ItemEditView: View {
     @EnvironmentObject var apiState: ApiState
     @Binding var showingEditSheet: Bool
     @State var title = ""
-    @State var itemBody = ""
+    @State var details = ""
     
     var body: some View {
         VStack {
@@ -22,7 +22,7 @@ struct ItemEditView: View {
             }
             
             TextField("Title", text: $title)
-            TextField("Body", text: $itemBody)
+            TextField("Details", text: $details)
             
             Spacer()
             
@@ -33,12 +33,12 @@ struct ItemEditView: View {
         .padding()
         .onAppear {
             title = item.title
-            itemBody = item.body
+            details = item.details
         }
     }
     
     func save() {
-        let item = FeedItem(id: item.id, title: title, body: itemBody)
+        let item = FeedItem(id: item.id, title: title, details: details)
         Api.edit(item.id, item) { response in
             DispatchQueue.main.async {
                 if response.success {
