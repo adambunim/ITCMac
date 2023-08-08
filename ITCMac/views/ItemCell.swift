@@ -32,33 +32,18 @@ struct ItemCell: View {
                 
                 Spacer()
                 
-                if showingMore {
+                Button(action: {
+                    showingMore.toggle()
+                }) {
                     HStack(spacing: 0) {
-                        Button(action: {
-                            showingMore = false
-                        }) {
-                            Text("less")
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Image(systemName: "chevron.up")
+                        Text(showingMore ? "less" : "more")
+                        Image(systemName: showingMore ? "chevron.up" : "chevron.down")
                     }
                     .foregroundColor(.accentColor)
                 }
-                else {
-                    HStack(spacing: 0) {
-                        Button(action: {
-                            showingMore = true
-                        }) {
-                            Text("more")
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Image(systemName: "chevron.down")
-                    }
-                    .foregroundColor(.accentColor)
-                }
-            }            
+                .buttonStyle(.plain)
+
+            }
         }
         .padding(.leading, 20)
         .padding(.trailing, 20)
@@ -66,10 +51,6 @@ struct ItemCell: View {
         .padding(.bottom, 8)
         .background(Color.white)
         .cornerRadius(10)
-//        .sheet(isPresented: $showingSheet) {
-//            ItemView(item: item, showingSheet: $showingSheet)
-//        }
-//        .buttonStyle(.plain)
     }
 }
 
