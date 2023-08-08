@@ -36,7 +36,15 @@ struct ItemEditView: View {
                 Text("Save")
             }
             .disabled(title == item.title && details == item.details)
+            .buttonStyle(.plain)
+            .foregroundColor(.accentColor)
             
+            Button(action: delete) {
+                Text("Delete")
+                    .foregroundColor(.red)
+            }
+            .buttonStyle(.plain)
+            .foregroundColor(.red)
         }
         .padding()
         .onAppear {
@@ -54,6 +62,22 @@ struct ItemEditView: View {
                         $0.id != item.id
                     }
                     apiState.items.append(item)
+                    showingSheet = false
+                }
+                else {
+                    error = true
+                }
+            }
+        }
+    }
+    
+    func delete() {
+        Api.delete(item.id) { success in
+            DispatchQueue.main.async {
+                if success {
+                    apiState.items = apiState.items.filter {
+                        $0.id != item.id
+                    }
                     showingSheet = false
                 }
                 else {
