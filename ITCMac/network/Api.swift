@@ -13,18 +13,12 @@ class Api {
         }
 
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else {
-                print("no data")
+            if !isOk(response, error) {
                 callback(nil)
                 return
             }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("wrong response type")
-                callback([])
-                return
-            }
-            if httpResponse.statusCode != 200 {
-                print("error code \(httpResponse.statusCode)")
+            guard let data = data else {
+                print("no data")
                 callback(nil)
                 return
             }
@@ -50,18 +44,7 @@ class Api {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            if error != nil {
-                print("got error")
-                callback(false)
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("wrong response type")
-                callback(false)
-                return
-            }
-            if httpResponse.statusCode != 200 {
-                print("error code \(httpResponse.statusCode)")
+            if !isOk(response, error) {
                 callback(false)
                 return
             }
@@ -85,18 +68,7 @@ class Api {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                if error != nil {
-                    print("got error")
-                    callback(false)
-                    return
-                }
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    print("wrong response type")
-                    callback(false)
-                    return
-                }
-                if httpResponse.statusCode != 200 {
-                    print("error code \(httpResponse.statusCode)")
+                if !isOk(response, error) {
                     callback(false)
                     return
                 }
@@ -125,18 +97,7 @@ class Api {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                if error != nil {
-                    print("got error")
-                    callback(nil)
-                    return
-                }
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    print("wrong response type")
-                    callback(nil)
-                    return
-                }
-                if httpResponse.statusCode != 200 {
-                    print("error code \(httpResponse.statusCode)")
+                if !isOk(response, error) {
                     callback(nil)
                     return
                 }
@@ -155,5 +116,21 @@ class Api {
             callback(nil)
         }
     }
-        
+    
+    static func isOk(_ response: URLResponse?, _ error: Error?) -> Bool {
+        if error != nil {
+            print("got error")
+            return false
+        }
+        guard let httpResponse = response as? HTTPURLResponse else {
+            print("wrong response type")
+            return false
+        }
+        if httpResponse.statusCode != 200 {
+            print("error code \(httpResponse.statusCode)")
+            return false
+        }
+        return true
+    }
+    
 }
