@@ -16,7 +16,7 @@ struct ContentView: View {
                     load()
                 }
             
-            Toggle("Show only items in Tel Aviv", isOn: $filterByLocation)
+            Toggle("Show only items near Tel Aviv", isOn: $filterByLocation)
                 .onChange(of: filterByLocation) { _ in
                     load()
                 }
