@@ -1,11 +1,21 @@
 
-import Foundation
+import MapKit
 
 class Api {
 
     static let host = "http://localhost:3000"
     
-    static func get(_ filter: String, _ callback: @escaping ([FeedItem]?) -> Void) {
+    static func get(_ filter: String, _ location: CLLocationCoordinate2D?, _ callback: @escaping ([FeedItem]?) -> Void) {
+        guard var comps = URLComponents(string: host) else {
+            print("bad url")
+            callback(nil)
+            return
+        }
+        comps.queryItems?.append(URLQueryItem(name: "filter", value: filter))
+        if let location = location {
+            comps.queryItems?.append(URLQueryItem(name: "lat", value: "\(location.latitude)"))
+            comps.queryItems?.append(URLQueryItem(name: "long", value: "\(location.longitude)"))
+        }
         guard let url = URL(string: "\(host)/\(filter)") else {
             print("bad url")
             callback(nil)

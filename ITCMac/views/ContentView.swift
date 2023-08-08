@@ -7,11 +7,17 @@ struct ContentView: View {
     @State var showingAlert = false
     @State var showingAddSheet = false
     @State var search = ""
+    @State var filterByLocation = false
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             TextField("Search", text: $search)
                 .onSubmit {
+                    load()
+                }
+            
+            Toggle("Show only items in Tel Aviv", isOn: $filterByLocation)
+                .onChange(of: filterByLocation) { _ in
                     load()
                 }
             
@@ -62,7 +68,7 @@ struct ContentView: View {
     func load() {
         showingAlert = false
         apiState.loading = true
-        Api.get(search) { items in
+        Api.get(search, telAviv) { items in
             DispatchQueue.main.async {
                 apiState.loading = false
                 guard let items = items else {
