@@ -1,5 +1,6 @@
 
 import SwiftUI
+import MapKit
 
 struct ItemCell: View {
     
@@ -15,6 +16,15 @@ struct ItemCell: View {
             if showingMore {
                 Text(item.details)
                     .font(.body)
+                
+                if let lat = item.lat, let long = item.long {
+                    HStack {
+                        Spacer()
+                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long)), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))), interactionModes: [])
+                            .frame(width: 200, height: 200)
+                        Spacer()
+                    }
+                }
             }
             
             HStack {
