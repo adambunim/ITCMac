@@ -4,24 +4,34 @@ import SwiftUI
 struct ItemCell: View {
     
     let item: FeedItem
-    @State private var showingSheet = false
+    @State private var showingMore = false
+    @State var showingEditSheet = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(item.title)
                 .font(.title)
                
-            if showingSheet {
+            if showingMore {
                 Text(item.details)
                     .font(.body)
+                
+                Button(action: {
+                    showingEditSheet = true
+                }) {
+                    Image(systemName: "pencil")
+                        .sheet(isPresented: $showingEditSheet) {
+                            ItemEditView(item: item, showingSheet: $showingEditSheet)
+                        }
+                }
             }
             
             HStack(spacing: 0) {
                 Spacer()
                 
-                if showingSheet {
+                if showingMore {
                     Button(action: {
-                        showingSheet = false
+                        showingMore = false
                     }) {
                         Text("less")
                     }
@@ -31,7 +41,7 @@ struct ItemCell: View {
                 }
                 else {
                     Button(action: {
-                        showingSheet = true
+                        showingMore = true
                     }) {
                         Text("more")
                     }
