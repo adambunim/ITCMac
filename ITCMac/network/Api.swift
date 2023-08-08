@@ -6,17 +6,20 @@ class Api {
     static let host = "http://localhost:3000"
     
     static func get(_ filter: String, _ location: CLLocationCoordinate2D?, _ callback: @escaping ([FeedItem]?) -> Void) {
-        guard var comps = URLComponents(string: host) else {
-            print("bad url")
-            callback(nil)
-            return
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = "localhost"
+        components.path = "/"
+        components.port = 3000
+        components.queryItems = []
+        if !filter.isEmpty {
+            components.queryItems?.append(URLQueryItem(name: "filter", value: filter))
         }
-        comps.queryItems?.append(URLQueryItem(name: "filter", value: filter))
         if let location = location {
-            comps.queryItems?.append(URLQueryItem(name: "lat", value: "\(location.latitude)"))
-            comps.queryItems?.append(URLQueryItem(name: "long", value: "\(location.longitude)"))
+            components.queryItems?.append(URLQueryItem(name: "lat", value: "\(location.latitude)"))
+            components.queryItems?.append(URLQueryItem(name: "long", value: "\(location.longitude)"))
         }
-        guard let url = URL(string: "\(host)/\(filter)") else {
+        guard let url = components.url else {
             print("bad url")
             callback(nil)
             return
