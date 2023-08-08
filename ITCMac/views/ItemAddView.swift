@@ -10,7 +10,7 @@ struct ItemAddView: View {
     @State var error = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             HStack {
                 if error {
                     Image(systemName: "exclamationmark")
@@ -26,18 +26,21 @@ struct ItemAddView: View {
                 }
             }
             
-            TextField("Title", text: $title)
-            TextField("Details", text: $details)
-            
-            Spacer()
+            Form {
+                TextField("Title", text: $title)
+                TextField("Details", text: $details)
+            }
             
             Button(action: save) {
                 Text("Save")
             }
             .disabled(title.isEmpty || details.isEmpty)
+            .buttonStyle(.plain)
+            .foregroundColor(.accentColor)
             
         }
         .padding()
+        .frame(width: 300, alignment: .leading)
     }
     
     func save() {
