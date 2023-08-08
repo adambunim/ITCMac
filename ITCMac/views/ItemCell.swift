@@ -15,43 +15,50 @@ struct ItemCell: View {
             if showingMore {
                 Text(item.details)
                     .font(.body)
-                
-                Button(action: {
-                    showingEditSheet = true
-                }) {
-                    Image(systemName: "pencil")
-                        .sheet(isPresented: $showingEditSheet) {
-                            ItemEditView(item: item, showingSheet: $showingEditSheet)
-                        }
-                }
             }
             
-            HStack(spacing: 0) {
+            HStack {
+                if showingMore {
+                    Button(action: {
+                        showingEditSheet = true
+                    }) {
+                        Image(systemName: "pencil")
+                            .sheet(isPresented: $showingEditSheet) {
+                                ItemEditView(item: item, showingSheet: $showingEditSheet)
+                            }
+                    }
+                    .buttonStyle(.plain)
+                }
+                
                 Spacer()
                 
                 if showingMore {
-                    Button(action: {
-                        showingMore = false
-                    }) {
-                        Text("less")
+                    HStack(spacing: 0) {
+                        Button(action: {
+                            showingMore = false
+                        }) {
+                            Text("less")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Image(systemName: "chevron.up")
                     }
-                    .buttonStyle(.plain)
-                    
-                    Image(systemName: "chevron.up")
+                    .foregroundColor(.accentColor)
                 }
                 else {
-                    Button(action: {
-                        showingMore = true
-                    }) {
-                        Text("more")
+                    HStack(spacing: 0) {
+                        Button(action: {
+                            showingMore = true
+                        }) {
+                            Text("more")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Image(systemName: "chevron.down")
                     }
-                    .buttonStyle(.plain)
-                    
-                    Image(systemName: "chevron.down")
+                    .foregroundColor(.accentColor)
                 }
-            }
-            .foregroundColor(.accentColor)
-            
+            }            
         }
         .padding(.leading, 20)
         .padding(.trailing, 20)

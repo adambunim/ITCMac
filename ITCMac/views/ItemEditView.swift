@@ -11,7 +11,7 @@ struct ItemEditView: View {
     @State var error = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             HStack {
                 if error {
                     Image(systemName: "exclamationmark")
@@ -27,10 +27,10 @@ struct ItemEditView: View {
                 }
             }
             
-            TextField("Title", text: $title)
-            TextField("Details", text: $details)
-            
-            Spacer()
+            Form {
+                TextField("Title", text: $title)
+                TextField("Details", text: $details)
+            }
             
             Button(action: save) {
                 Text("Save")
@@ -47,6 +47,7 @@ struct ItemEditView: View {
             .foregroundColor(.red)
         }
         .padding()
+        .frame(width: 300, alignment: .leading)
         .onAppear {
             title = item.title
             details = item.details
