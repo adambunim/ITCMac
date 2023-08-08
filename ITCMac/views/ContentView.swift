@@ -68,7 +68,7 @@ struct ContentView: View {
     func load() {
         showingAlert = false
         apiState.loading = true
-        Api.get(search, telAviv) { items in
+        Api.get(search, filterByLocation ? telAviv : nil) { items in
             DispatchQueue.main.async {
                 apiState.loading = false
                 guard let items = items else {

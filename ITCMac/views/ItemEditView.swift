@@ -10,7 +10,7 @@ struct ItemEditView: View {
     @State var title = ""
     @State var details = ""
     @State var error = false
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: TelAviv.lat, longitude: TelAviv.long), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: telAviv.latitude, longitude: telAviv.longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
     var body: some View {
         VStack(spacing: 8) {
@@ -72,7 +72,7 @@ struct ItemEditView: View {
             return !region.center.latitude.isNear(lat) || !region.center.longitude.isNear(long)
         }
         else {
-            return !region.center.latitude.isNear(TelAviv.lat) || !region.center.longitude.isNear(TelAviv.long)
+            return !region.center.latitude.isNear(telAviv.latitude) || !region.center.longitude.isNear(telAviv.longitude)
         }
     }
     
