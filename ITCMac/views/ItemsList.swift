@@ -12,7 +12,6 @@ struct ItemsList: View {
                     ItemCell(item: $0)
                 }
             }
-            .padding()
         }
     }
 }

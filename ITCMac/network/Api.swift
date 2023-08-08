@@ -5,23 +5,36 @@ class Api {
 
     static let host = "http://localhost:3000"
     
-    static func get(_ callback: @escaping (GetItemsResult) -> Void) {
-        guard let url = URL(string: host) else {
-            callback(GetItemsResult(errorMessage: "bad url", items: []))
+    static func get(_ filter: String, _ callback: @escaping ([FeedItem]?) -> Void) {
+        guard let url = URL(string: "\(host)/\(filter)") else {
+            print("bad url")
+            callback(nil)
             return
         }
 
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else {
-                callback(GetItemsResult(errorMessage: "no data", items: []))
+                print("no data")
+                callback(nil)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("wrong response type")
+                callback([])
+                return
+            }
+            if httpResponse.statusCode != 200 {
+                print("error code \(httpResponse.statusCode)")
+                callback(nil)
                 return
             }
             do {
                 let items = try JSONDecoder().decode([FeedItem].self, from: data)
-                callback(GetItemsResult(errorMessage: nil, items: items))
+                callback(items)
             }
             catch {
-                callback(GetItemsResult(errorMessage: "could not parse", items: []))
+                print("could not parse")
+                callback(nil)
                 return
             }
         }

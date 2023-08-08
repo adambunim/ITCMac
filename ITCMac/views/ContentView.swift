@@ -5,11 +5,16 @@ struct ContentView: View {
     
     @StateObject var apiState = ApiState()
     @State var showingAlert = false
-    @State var errorMessage: String = ""
     @State var showingAddSheet = false
+    @State var search = ""
     
     var body: some View {
         VStack {
+            TextField("Search", text: $search)
+                .onSubmit {
+                    load()
+                }
+            
             ZStack {
                 ItemsList()
                 
@@ -44,30 +49,28 @@ struct ContentView: View {
             .padding()
             
         }
-        .alert(errorMessage, isPresented: $showingAlert) {
+        .alert("Could not load data", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         }
         .environmentObject(apiState)
         .onAppear {
             load()
         }
+        .padding()
     }
     
     func load() {
         showingAlert = false
         apiState.loading = true
-        Api.get { response in
+        Api.get(search) { items in
             DispatchQueue.main.async {
                 apiState.loading = false
-                if let error = response.errorMessage {
+                guard let items = items else {
                     showingAlert = true
-                    errorMessage = error
+                    return
                 }
-                else {
-                    showingAlert = false
-                    errorMessage = ""
-                }
-                apiState.items = response.items
+                showingAlert = false
+                apiState.items = items
             }
         }
     }
