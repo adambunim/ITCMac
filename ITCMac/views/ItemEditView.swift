@@ -1,5 +1,6 @@
 
 import SwiftUI
+import MapKit
 
 struct ItemEditView: View {
     
@@ -9,6 +10,7 @@ struct ItemEditView: View {
     @State var title = ""
     @State var details = ""
     @State var error = false
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: TelAviv.lat, longitude: TelAviv.long), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
     var body: some View {
         VStack(spacing: 8) {
@@ -32,10 +34,13 @@ struct ItemEditView: View {
                 TextField("Details", text: $details)
             }
             
+            Map(coordinateRegion: $region)
+                        .frame(width: 200, height: 200)
+            
             Button(action: save) {
                 Text("Save")
             }
-            .disabled(title == item.title && details == item.details)
+            .disabled(!isChanged())
             .buttonStyle(.plain)
             .foregroundColor(.accentColor)
             
@@ -51,11 +56,28 @@ struct ItemEditView: View {
         .onAppear {
             title = item.title
             details = item.details
+            if let lat = item.lat, let long = item.long {
+                region.center.latitude = lat
+                region.center.longitude = long
+            }
+        }
+    }
+    
+    func isChanged() -> Bool {
+        if title != item.title || details != item.details {
+            return true
+        }
+        
+        if let lat = item.lat, let long = item.long {
+            return !region.center.latitude.isNear(lat) || !region.center.longitude.isNear(long)
+        }
+        else {
+            return !region.center.latitude.isNear(TelAviv.lat) || !region.center.longitude.isNear(TelAviv.long)
         }
     }
     
     func save() {
-        let item = FeedItem(id: item.id, title: title, details: details)
+        let item = FeedItem(id: item.id, title: title, details: details, lat: region.center.latitude, long: region.center.longitude)
         Api.edit(item.id, item) { success in
             DispatchQueue.main.async {
                 if success {
@@ -88,4 +110,11 @@ struct ItemEditView: View {
         }
     }
     
+}
+
+extension Double {
+    func isNear(_ other: Double) -> Bool {
+        let delta = abs(self - other)
+        return delta < 0.0001
+    }
 }

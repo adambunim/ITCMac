@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73D5DAD32A828731000EDBB8 /* TelAviv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D5DAD22A828731000EDBB8 /* TelAviv.swift */; };
 		73FFA57F2A7FE3DB00B964C3 /* ITCMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA57E2A7FE3DB00B964C3 /* ITCMacApp.swift */; };
 		73FFA5812A7FE3DB00B964C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFA5802A7FE3DB00B964C3 /* ContentView.swift */; };
 		73FFA5832A7FE3DE00B964C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73FFA5822A7FE3DE00B964C3 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		73D5DAD22A828731000EDBB8 /* TelAviv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelAviv.swift; sourceTree = "<group>"; };
 		73FFA57B2A7FE3DB00B964C3 /* ITCMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITCMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73FFA57E2A7FE3DB00B964C3 /* ITCMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITCMacApp.swift; sourceTree = "<group>"; };
 		73FFA5802A7FE3DB00B964C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				73FFA5B62A7FF43D00B964C3 /* network */,
 				73FFA5AE2A7FE79F00B964C3 /* items.json */,
 				73FFA5BF2A80F6A000B964C3 /* ApiState.swift */,
+				73D5DAD22A828731000EDBB8 /* TelAviv.swift */,
 			);
 			path = ITCMac;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				73FFA57F2A7FE3DB00B964C3 /* ITCMacApp.swift in Sources */,
 				73FFA5AB2A7FE4DD00B964C3 /* ItemCell.swift in Sources */,
 				73FFA5B12A7FE82900B964C3 /* JsonLoader.swift in Sources */,
+				73D5DAD32A828731000EDBB8 /* TelAviv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
