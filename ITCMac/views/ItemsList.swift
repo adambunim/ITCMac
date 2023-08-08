@@ -7,7 +7,7 @@ struct ItemsList: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 15) {
                 ForEach(apiState.items) {
                     ItemCell(item: $0)
                 }

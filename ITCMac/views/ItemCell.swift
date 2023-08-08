@@ -11,14 +11,41 @@ struct ItemCell: View {
             showingSheet = true
         }) {
             HStack {
-                Text(item.title)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(item.title)
+                        .font(.title)
+                        
+                    Text(item.details)
+                        .font(.body)
+                    
+                    HStack(spacing: 0) {
+                        Spacer()
+                        
+                        Button(action: {
+                            print("more")
+                        }) {
+                            Text("more")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Image(systemName: "chevron.down")
+                    }
+                    .foregroundColor(.accentColor)
+                    
+                }
                 Spacer()
             }
-            .padding([.leading, .trailing])
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
+            .background(Color.white)
+            .cornerRadius(10)
             .sheet(isPresented: $showingSheet) {
                 ItemView(item: item, showingSheet: $showingSheet)
             }
         }
+        .buttonStyle(.plain)
     }
 }
 
